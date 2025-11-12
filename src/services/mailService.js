@@ -9,9 +9,11 @@ export async function sendEmail(to, subject, message) {
         },
     });
 
+    const recipents = Array.isArray(to) ? to.join(', ') : to;
+
     const mailOption = {
         from: process.env.EMAIL_USER,
-        to,
+        to: recipents,
         subject,
         html: message,
     };
